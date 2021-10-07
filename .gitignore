@@ -1,0 +1,5 @@
+#Ignores the build results folder
+results/
+
+#Ignores the cache when executing the script
+_pycache_

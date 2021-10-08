@@ -2,4 +2,4 @@
 results/
 
 #Ignores the cache when executing the script
-_pycache_/
+__pycache__/

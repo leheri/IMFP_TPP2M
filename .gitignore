@@ -3,3 +3,6 @@ results/
 
 #Ignores the cache when executing the script
 __pycache__/
+
+#Ignores branch folders
+branch-*/

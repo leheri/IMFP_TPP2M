@@ -1,8 +1,9 @@
 #Ignores the build results folder
 results/
 
-#Ignores the cache when executing the script
-*pycache*/
+#Ignores the cache
+__pycache__/
 
-#Ignores branch folders
-branch-*/
+#Ignores features and fixes folders
+features/
+fixes/

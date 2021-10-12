@@ -2,7 +2,7 @@
 """
 Created on Wed Sep 29 11:01:58 2021
 
-@author: USER
+@author: Lea
 """
 import numpy as np
 from dataclasses import dataclass
@@ -11,7 +11,7 @@ import pandas as pd
 @dataclass
 class Calculations:
     '''Class for retrieving the properties, calculating IMFP and probing depth and generating a dataset in a dataframe.'''
-    df = pd.DataFrame()
+    df = 0
     density =0.0
     molecular_weight =0.0
     number_VE=0.0
@@ -23,10 +23,10 @@ class Calculations:
     d=0.0
     lam = 0.0
     prob_depth = 0.0
-    df=0
+    #compound = 0
     
-    def __init__(self):
-        self.df = pd.DataFrame()
+    def __init__(self, compound):
+        self.df = 0
         self.density =0.0
         self.molecular_weight =0.0
         self.number_VE=0.0
@@ -38,7 +38,7 @@ class Calculations:
         self.d=0.0
         self.lam = 0.0
         self.prob_depth = 0.0
-        self.df=0
+        #self.compound = compound
 
     
     def get_properties(self, compound):
@@ -47,6 +47,7 @@ class Calculations:
         """
         data = pd.read_csv(r'./TPP2-data/tblIMFPdata.csv', delimiter = ';', dtype={'Density': float, 'Atomic wght': float, 'valel s+p,n+1': float, 'Energy gap 300 K': float})
         row_index = data[data["Name"] == compound].index
+        #self.compound = compound
         self.density = data.iloc[row_index ,4]
         self.density = self.density.iloc[0]
         self.molecular_weight = data.iloc[row_index ,5]
@@ -74,24 +75,3 @@ class Calculations:
         """
         self.lam = (x / (self.plasmon_energy**2*((self.beta*np.log(self.gamma*x))-(self.c/x) + (self.d/x**2)))/10)
         self.prob_depth = 3*self.lam
-
-
-    def gen_dataset(self, element, min_e, max_e):
-        """Generates and returns dataset with calculated IMFP and probing depth for given energy range."""
-
-        self.calc_constants(element)
-        list_e = []
-        list_imfp = []
-        list_pd = []
-        
-        while min_e < max_e+1:
-            self.calc_imfp_probdepth(min_e)
-            list_e.append(min_e)
-            list_imfp.append(self.lam)
-            list_pd.append(self.prob_depth)
-            min_e += 1
-            
-        self.df = pd.DataFrame(list(zip(list_e, list_imfp, list_pd)), columns = ["Electron energy/eV", "IMFP / nm", "Probing depth / nm"])
-        return self.df
-        
-    

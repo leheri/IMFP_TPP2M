@@ -41,17 +41,26 @@ class Plotting:
             list_pd.append(self.one.prob_depth)
             min_e += 1
             
-        self.df = pd.DataFrame(list(zip(list_e, list_imfp, list_pd)), columns = ["Electron energy/eV", "IMFP / nm", "Probing depth / nm"])
-        self.df.to_csv(os.path.join("results",self.element+"_data.csv"), sep = ",")
+        self.df = pd.DataFrame(list(zip(list_e, list_imfp, list_pd)))
+        self.df.columns = pd.MultiIndex.from_arrays([["Properties used for calculation:","",""],
+                                                     ["Density / g/cm3", self.one.density, ""],
+                                                     ["Atomic mass", self.one.molecular_weight, ""],
+                                                     ["Band gap / eV", self.one.band_gap_E,""],
+                                                     ["Valence electrons", self.one.number_VE, ""],
+                                                     ["Electron energy/eV", "IMFP / nm", "Probing depth / nm"]])
+                                                    
+        self.df.to_csv(os.path.join("results","IMFP_"+self.element+"_data.csv"), sep = ",")
     
     def plot_imfp(self, min_e, max_e):
         self.gen_dataset(min_e, max_e)
-        self.ax.plot(self.df.iloc[:,0], self.df.iloc[:,1], label="IMFP " +self.element, color='#44AA99')
-        self.ax.plot(self.df.iloc[:,0], self.df.iloc[:,2], label="probing depth " +self.element, color='#117733')
-        self.ax.set_xlabel('Electron energy / eV')
+        self.ax.plot(self.df.iloc[:,0], self.df.iloc[:,1], 
+                     label="IMFP " +self.element, color='#44AA99')
+        self.ax.plot(self.df.iloc[:,0], self.df.iloc[:,2], 
+                     label="Probing depth " +self.element, color='#117733')
+        self.ax.set_xlabel('Kinetic energy / eV')
         self.ax.set_ylabel('Path length / nm')
         self.ax.legend()
         self.ax.set_title("IMFP and Probing depth")
-        plt.savefig(os.path.join("results",self.element+".png"), dpi=600)
+        plt.savefig(os.path.join("results","IMFP_"+self.element+".png"), dpi=600)
         
     

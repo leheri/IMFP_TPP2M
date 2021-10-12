@@ -5,6 +5,3 @@ results/
 __pycache__/
 *.pyc
 
-#Ignores features and fixes folders
-features/
-fixes/

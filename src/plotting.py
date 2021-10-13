@@ -48,7 +48,9 @@ class Plotting:
                                                      ["Band gap / eV", self.one.band_gap_E,""],
                                                      ["Valence electrons", self.one.number_VE, ""],
                                                      ["Electron energy/eV", "IMFP / nm", "Probing depth / nm"]])
-                                                    
+                   
+        if not os.path.exists("results") :
+            os.mkdir("results")                                 
         self.df.to_csv(os.path.join("results","IMFP_"+self.element+"_data.csv"), sep = ",")
     
     def plot_imfp(self, min_e, max_e):
@@ -62,5 +64,6 @@ class Plotting:
         self.ax.legend()
         self.ax.set_title("IMFP and Probing depth")
         plt.savefig(os.path.join("results","IMFP_"+self.element+".png"), dpi=600)
+        plt.show(self.fig)
         
     

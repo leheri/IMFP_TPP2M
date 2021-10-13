@@ -64,6 +64,6 @@ class Plotting:
         self.ax.legend()
         self.ax.set_title("IMFP and Probing depth")
         plt.savefig(os.path.join("results","IMFP_"+self.element+".png"), dpi=600)
-        plt.show(self.fig)
+        plt.show()
         
     

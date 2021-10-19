@@ -45,7 +45,7 @@ class Calculations:
         """
         Retrieves properties that are needed for the calculation from the dataset for the input compound and stores in attribute.
         """
-        data = pd.read_csv(r'./TPP2-data/tblIMFPdata.csv', delimiter = ';', dtype={'Density': float, 'Atomic wght': float, 'valel s+p,n+1': float, 'Energy gap 300 K': float})
+        data = pd.read_csv(r'./data/tblIMFPdata.csv', delimiter = ';', dtype={'Density': float, 'Atomic wght': float, 'valel s+p,n+1': float, 'Energy gap 300 K': float})
         data = data.fillna(0)
         row_index = data[data["Name"] == compound].index
         self.density = data.iloc[row_index ,4]

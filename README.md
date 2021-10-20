@@ -7,6 +7,7 @@ is taken from the QUASES IMFP software package [2].
 
 ## Prerequisites
 Python >= 3.7 </br>
+Packages: </br>
 
 ```Python
 pandas
@@ -34,7 +35,7 @@ On Windows: Double click the **IMFP.bat** file to start the execution.</br>
 
 The program will ask you for an input of which element you want to plot
 in the console. You can input all elements/compunds in the table within the **data** folder. Enter 
-the kinetic energy range of the calculation. The plottet IMFP and probing depth (estimated 3* IMFP) 
+the kinetic energy range of the calculation. The plotted IMFP and probing depth (estimated 3* IMFP) 
 will open. The corresponding data (in .csv file) and plot (.png) will be stored in the results folder 
 that is created upon the first execution. The dataset provides you with the parameters that were used for the calculation.
 

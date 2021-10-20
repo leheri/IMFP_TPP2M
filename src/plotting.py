@@ -28,7 +28,7 @@ class Plotting:
 
 
     def gen_dataset(self, min_e, max_e):
-        """Generates and returns dataset with calculated IMFP and probing depth for given energy range."""
+        """Generates dataset with calculated IMFP and probing depth for given energy range."""
         self.one.calc_constants(self.element)
         list_e = []
         list_imfp = []

@@ -45,16 +45,16 @@ class Calculations:
         """
         Retrieves properties that are needed for the calculation from the dataset for the input compound and stores them in attributes.
         """
-        data = pd.read_csv(r'./data/tblIMFPdata.csv', delimiter = ';', dtype={'Density': float, 'Atomic wght': float, 'valel s+p,n+1': float, 'Energy gap 300 K': float})
+        data = pd.read_csv(r'./data/Data_TPP2M.csv', delimiter = ';', dtype={'Density': float, 'Atomic wght': float, 'valel s+p,n+1': float, 'Energy gap 300 K': float})
         data = data.fillna(0)
         row_index = data[data["Name"] == compound].index
-        self.density = data.iloc[row_index ,4]
+        self.density = data.iloc[row_index ,2]
         self.density = self.density.iloc[0]
-        self.molecular_weight = data.iloc[row_index ,5]
+        self.molecular_weight = data.iloc[row_index ,3]
         self.molecular_weight = self.molecular_weight.iloc[0]
-        self.number_VE = data.iloc[row_index ,7] + data.iloc[row_index ,9] + data.iloc[row_index ,10]
+        self.number_VE = data.iloc[row_index ,-2]
         self.number_VE = self.number_VE.iloc[0]
-        self.band_gap_E = data.iloc[row_index, 11]
+        self.band_gap_E = data.iloc[row_index, -1]
         self.band_gap_E = self.band_gap_E.iloc[0]
 
     
